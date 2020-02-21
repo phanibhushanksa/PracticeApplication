@@ -6,54 +6,58 @@ namespace PracticeApplication
 {
     class reverseStringPractice
     {
-
+        public static List<List<int>> li = new List<List<int>>();
+        public static int q =  new int();
         public static void Main()
-        {
-            char[] inp = new char[] {'a' , 'b' , 'c' , 'a' , 'b' , 'c' };
-            int k = 2;
-            bool flag = false;
-            Dictionary<char, List<int>> dict = new Dictionary<char, List<int>>();
-            List<int> tempList = new List<int>();
-           
+        {   
             
-
-            for (int i = 0; i < inp.Length; i++)
-            {
-                List<int> uniqueList = new List<int>();
-                if (!dict.ContainsKey(inp[i]))
-                {
-                    
-                    uniqueList.Add(i);
-                    dict.Add(inp[i], uniqueList);
-                }
-                else
-                {
-                    tempList = dict[inp[i]];
-                    tempList.Add(i);
-                    dict[inp[i]] = tempList;
-
-                }
+            int n = 5;
+           
+            //int[] arr = new int[] { };
+            //for(q = 1; q<n;q++)
+            //{
+                myRecur(n);
                 
-            }
-            foreach(var temp in dict)
-            {
-                if (temp.Value.Count > 1)
-                {
-                    for (int i = 0; i < temp.Value.Count - 1; i++)
-                    {
-                        if ((temp.Value[i + 1] - temp.Value[i]) <= k)
-                        {
-                            flag = true;
-                            break;
-                        }
-                       
-                    }
-                    if (flag == true)
-                        break;
-                }
-            }
-            Console.WriteLine(flag);
-        }
+            //}   
 
+        }
+        public static int myRecur(int a) 
+        {
+            try
+            {
+                if (a == 1)
+                {
+                    //Console.WriteLine(a);
+
+                    return a;
+                    // tempList.Add(a);
+                    // reverseStringPractice.li.Add(tempList);
+                }
+                else              
+                {
+                    for (int i = 1; i <=a; i++)
+                    {
+                      
+                        Console.WriteLine("{0} {1}", i, a-i);
+                        if (a - i == 1)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            return myRecur(a - i);
+                        }
+                    }
+                    
+                }
+                return 1;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return default; 
+            }
+               
+        }
     }
 }
